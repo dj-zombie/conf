@@ -117,9 +117,6 @@ autocmd FileType make setlocal noexpandtab
 " Wrap markdown text.
 autocmd Syntax markdown setlocal wrap
 
-" Font options.
-set guifont=Fira\ Code:h12
-
 " Turn off linewise keys.
 nmap j gj
 nmap k gk
