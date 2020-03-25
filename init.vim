@@ -2,8 +2,10 @@
 "
 call plug#begin('~/.vim/plugged')
 
-Plug '/usr/local/opt/fzf'
+" Plug '/usr/local/opt/fzf'
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 Plug 'ryanoasis/vim-devicons'
 Plug 'easymotion/vim-easymotion'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -16,6 +18,9 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
+Plug 'leafgarland/typescript-vim'
+
+let g:loaded_clipboard_provider = 1
 
 " Remap leader key to ,
 let g:mapleader=','
@@ -77,7 +82,7 @@ nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
 nnoremap <C-p> :Files<Cr>
-
+" requires apt-get install silversearcher-ag
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " <TAB>: completion.
