@@ -5,16 +5,15 @@ call plug#begin('~/.vim/plugged')
 " Plug '/usr/local/opt/fzf'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
-"Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 Plug 'ryanoasis/vim-devicons'
 Plug 'easymotion/vim-easymotion'
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'HenryNewcomer/vim-theme-papaya'
 Plug 'Shougo/denite.nvim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-fugitive'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
@@ -197,4 +196,9 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
-colorscheme dracula
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+colorscheme papaya
+
