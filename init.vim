@@ -18,6 +18,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'leafgarland/typescript-vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 let g:loaded_clipboard_provider = 1
 
@@ -26,6 +27,9 @@ let g:mapleader=','
 
 " Don't show last command
 set noshowcmd
+
+" set mouse for split resizing
+set mouse=n
 
 " Yank and paste with the system clipboard
 set clipboard=unnamed
@@ -36,6 +40,7 @@ set number
 set encoding=utf8
 set guifont=DroidSansMono\ Nerd\ Font:h11
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#formatter = 'denite'
 
 set tabstop=2       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
@@ -65,6 +70,8 @@ noremap - <PageUp>
 hi! VertSplit gui=NONE guifg=#17252c guibg=#17252c
 hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=#17252c guifg=#17252c
 
+nnoremap <C-I> i <ESC>r
+
 " Terminal
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-N><C-w>h
@@ -84,6 +91,12 @@ nnoremap <C-p> :Files<Cr>
 " requires apt-get install silversearcher-ag
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -97,6 +110,7 @@ call plug#end()
 "   <leader>w - Easy-motion highlights first word letters bi-directionally
 map <leader>w <Plug>(easymotion-bd-w)
 
+" use :w!! for sudo write
 cmap w!! w !sudo tee %
 
 " === Denite shorcuts === "
@@ -104,10 +118,13 @@ cmap w!! w !sudo tee %
 "   <leader>t - Browse list of files in current directory
 "   <leader>g - Search current directory for occurences of given term and close window if no results
 "   <leader>j - Search current directory for occurences of word under cursor
-nmap ; :Denite buffer<CR>
-nmap <leader>t :DeniteProjectDir file/rec<CR>
-nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
-nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
+" nmap ; :Denite buffer<CR>
+" nmap <leader>t :DeniteProjectDir file/rec<CR>
+" nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
+" nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
+
+nmap ; :Buffers<CR>
+
 
 " Define mappings while in 'filter' mode
 "   <C-o>         - Switch to normal mode inside of search results
